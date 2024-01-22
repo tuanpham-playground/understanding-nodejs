@@ -39,34 +39,14 @@
 // 0.2s, huge CPU, Memory usage
 const fs = require("fs/promises");
 (async() => {
-    // console.time('end');
-    // const file = await fs.open(__dirname + '/test.txt', 'w');
-    // console.log(Buffer.alloc(5, 1))
-    // const stream = file.createWriteStream();
-    // console.log('@@',stream.writableHighWaterMark);
-    // const buffer = Buffer.alloc(16383, 10);
-    // console.log(stream.write(buffer));
-    // console.log(stream.write(Buffer.alloc(1)));
-    // console.log(stream.write(Buffer.alloc(1)));
-    // console.log(stream.write(Buffer.alloc(1)));
-    // console.log('!!!',stream.writableLength);
-    //
-    // stream.on('drain', () => {
-    //     console.log(stream.write(Buffer.alloc(1)));
-    //     console.log('!!!',stream.writableLength);
-    // })
 
     const fileHandle = await fs.open(__dirname+ "/test.txt", "w");
-
     const stream = fileHandle.createWriteStream();
 
-    console.log(stream.writableHighWaterMark);
-
-
+    console.log('writableHighWaterMark:',stream.writableHighWaterMark);
     console.time("writeMany");
 
     let i = 0;
-
     const numberOfWrites = 1000000;
 
     const writeMany = () => {
